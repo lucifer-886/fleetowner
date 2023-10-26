@@ -1,52 +1,128 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
+const multer = require('multer');
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
+// Set up EJS as the view engine
+app.set("view engine", "ejs");
+
+// Load environment variables
+require('dotenv').config();
+
+// Middleware
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-// Connect to your MongoDB database
-mongoose.connect('mongodb+srv://shannon:pereira@cluster0.8y3ievi.mongodb.net/test', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-const db = mongoose.connection;
-
-db.on('error', (err) => {
-  console.error('MongoDB connection error:', err);
-});
-db.once('open', () => {
-  console.log('Connected to MongoDB');
-});
-
-// Create a MongoDB model for the driver data
-const Driver = mongoose.model('Driver', {
+// MongoDB Models (Assuming 'models.js' correctly defines imgSchema and User)
+const imgSchema = require('./models.js');
+const User = mongoose.model('User', {
   name: String,
+  age: Number,
+  experience: String,
   licenseNumber: String,
-  contactNumber: String,
-  vehicle: String,
-  status: String,
-  rating: Number,
+  email: String,
+  password: String,
 });
 
-// Define a route to handle driver data submission
-app.post('/api/upload-driver', (req, res) => {
-  const driverData = req.body;
+// Multer Configuration for File Upload
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads');
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + '-' + Date.now());
+  }
+});
 
-  // Create a new Driver model using the Mongoose schema you defined
-  const newDriver = new Driver(driverData);
+const upload = multer({ storage: storage });
 
-  newDriver.save()
+// MongoDB Connection
+mongoose.connect( 'mongodb+srv://shannon:pereira@cluster0.8y3ievi.mongodb.net/test', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error(err));
+
+// Handle image upload form
+app.post('/', upload.single('image'), (req, res, next) => {
+ 
+  var obj = {
+      name: req.body.name,
+      desc: req.body.desc,
+      img: {
+          data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+          contentType: 'image/png'
+      }
+  }
+  imgSchema.create(obj)
+  .then ((err, item) => {
+      if (err) {
+          console.log(err);
+      }
+      else {
+          // item.save();
+          res.redirect('/');
+      }
+  });
+});
+
+
+// Retrieve uploaded images
+app.get('/', (req, res) => {
+  imgSchema.find({})
+  .then((data, err)=>{
+      if(err){
+          console.log(err);
+      }
+      res.render('imagePage',{items: data})
+  })
+});
+
+// Register a user
+app.post('/signup', (req, res) => {
+  const { name, age, experience, licenseNumber, email, password } = req.body;
+
+  const newUser = new User({
+    name,
+    age,
+    experience,
+    licenseNumber,
+    email,
+    password,
+  });
+
+  newUser.save()
     .then(() => {
-      res.json('Driver uploaded successfully.');
+      res.send('User registered successfully.');
     })
     .catch(err => {
-      res.status(400).json('Error: ' + err);
+      res.status(400).send('Error: ' + err);
     });
 });
 
+// Get user by email
+app.get('/user/:email', (req, res) => {
+  const userEmail = req.params.email;
+
+  User.findOne({ email: userEmail })
+    .then(user => {
+      if (user) {
+        res.json(user);
+      } else {
+        res.status(404).json({ error: 'User not found' });
+      }
+    })
+    .catch(err => {
+      res.status(500).json({ error: 'Server error' });
+    });
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
