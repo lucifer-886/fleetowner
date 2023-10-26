@@ -1,0 +1,120 @@
+/* Navigation Bar */
+.navbar {
+  background-color: #363636; /* Dark background color */
+  color: #fff; /* Text color to white */
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 220px;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+  border-right: 1px solid #555;
+  transition: transform 0.3s;
+  transform: translateX(0);
+}
+
+.navbar.active {
+  transform: translateX(-220px);
+}
+
+/* Navigation List */
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Navigation Items */
+.navbar li {
+  margin: 20px 0;
+  font-size: 18px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+
+  
+  text-transform: uppercase;
+}
+
+/* Navigation Links */
+.navbar a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  transition: 0.3s;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.navbar a:hover {
+  color: #ff9900;
+  transform: translateX(5px);
+}
+
+.navbar a.active {
+  color: #ff9900;
+  font-weight: 600;
+}
+
+.navbar li:hover {
+  cursor: pointer;
+  color: #ff9900;
+}
+
+/* Toggle Button */
+.toggle-button {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Show the toggle button on small screens */
+@media (max-width: 768px) {
+  .toggle-button.visible-on-sm {
+    display: block;
+  }
+}
+
+/* Add custom CSS class to control visibility on xs and sm screens */
+.toggle-button.visible-on-xs {
+  display: none;
+}
+
+.toggle-button.visible-on-sm {
+  display: none;
+}
+
+/* Show the toggle button on xs and sm screens */
+@media (max-width: 576px) {
+  .toggle-button.visible-on-xs {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .toggle-button.visible-on-sm {
+    display: block;
+  }
+}
+
+/* Login Button */
+.login-button button {
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button button:hover {
+  background-color: #ff4500;
+  transition: background-color 0.3s ease;
+}

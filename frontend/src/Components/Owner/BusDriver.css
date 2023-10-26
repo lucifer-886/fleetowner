@@ -1,0 +1,61 @@
+/* Add your CSS styles here */
+
+.schedule-header {
+    font-size: larger;
+    font-weight: bold;
+    margin-left: 330px;
+}
+
+.carde {
+    background-color: white;
+    transition: transform 0.2s;
+    margin-bottom: 20px;
+    margin-left: -100px; /* Adjust margin to add space between cards */
+    width: 250px;
+    border-radius: 10px; /* Keep the card as a box */
+    overflow: hidden; /* Clip content to stay within the box */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center; /* Center text horizontally */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content vertically */
+    padding: 20px; /* Add padding for better spacing */
+    position: relative; /* Required for positioning the line */
+}
+
+.carde:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: scale(1.05);
+}
+
+.carde img {
+    height: 200px;
+    width: 200px; /* Make the image square */
+    object-fit: cover;
+    border-radius: 50%; /* Make the image a circle */
+    margin-bottom: 20px; /* Add some space between the image and text */
+    margin-left: 20px;
+}
+
+.carde hr {
+    width: 100%; /* Adjust the line width as needed */
+    border: 2px solid #000000; /* Line color */
+    margin: 10px auto; /* Center the line horizontally */
+    border-radius: 10px;
+}
+
+.carde-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+}
+
+.carde-text {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+}
+
+.bus-schedule-bg {
+    width: '200px';
+}
