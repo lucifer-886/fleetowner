@@ -11,6 +11,7 @@ import Complaint from './Components/Complaint'
 import DriverList from './Components/DriverList'
 import TodaySchedule from './Components/Owner/TodaySchedule'
 import BusDrivers from './Components/Owner/BusDrivers'
+import Profile from './Components/Owner/Profile'
 function App(){
   return(
     <>
@@ -28,6 +29,7 @@ function App(){
     <Route path="/driverlist" element={<DriverList />}></Route>
     <Route path="/toda" element={<TodaySchedule />}></Route>
     <Route path="/dr" element={<BusDrivers />}></Route>
+    <Route path="/pr" element={<Profile />}></Route>
 
     
     

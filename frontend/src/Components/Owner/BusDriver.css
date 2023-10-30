@@ -1,4 +1,4 @@
-/* Add your CSS styles here */
+
 
 .schedule-header {
     font-size: larger;
@@ -10,11 +10,11 @@
     background-color: white;
     transition: transform 0.2s;
     margin-bottom: 20px;
-    margin-left: -100px; /* Adjust margin to add space between cards */
+    margin-left: -10px; /* Adjust margin to add space between cards */
     width: 250px;
-    border-radius: 10px; /* Keep the card as a box */
+    border-radius: 20px; /* Keep the card as a box */
     overflow: hidden; /* Clip content to stay within the box */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
     text-align: center; /* Center text horizontally */
     display: flex;
     flex-direction: column;
@@ -37,7 +37,7 @@
     margin-left: 20px;
 }
 
-.carde hr {
+.carde-hr {
     width: 100%; /* Adjust the line width as needed */
     border: 2px solid #000000; /* Line color */
     margin: 10px auto; /* Center the line horizontally */

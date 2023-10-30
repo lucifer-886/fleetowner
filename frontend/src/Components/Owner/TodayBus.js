@@ -1,124 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Navbar from '../Navbar';
 import './TodayBus.css';
-
+import axios from 'axios';
+import Uploadtoday from './Uploadtoday';
 export default function TodayBus() {
-  const todaySchedule = [
-    {
-      id: 1,
-      task: 'StateBank - Puttur',
-      time: '08:00 AM',
-      image: 'https://www.caronrentals.com/images/city/mangalore-to-puttur-round-trip_123653.jpg',
-    },
-    {
-      id: 2,
-      task: 'Puttur-Uppinangady',
-      time: '10:00 AM',
-      image: 'https://cache.careers360.mobi/media/colleges/staticmap/2023/8/8/20415.png',
-    },
-    {
-      id: 3,
-      task: 'StateBank - Puttur',
-      time: '08:00 AM',
-      image: 'https://www.caronrentals.com/images/city/mangalore-to-puttur-round-trip_123653.jpg',
-    },
-    {
-      id: 4,
-      task: 'Puttur-Uppinangady',
-      time: '10:00 AM',
-      image: 'https://cache.careers360.mobi/media/colleges/staticmap/2023/8/8/20415.png',
-    },
-    {
-        id: 5,
-        task: 'StateBank - Puttur',
-        time: '08:00 AM',
-        image: 'https://www.caronrentals.com/images/city/mangalore-to-puttur-round-trip_123653.jpg',
-      },
-      {
-        id: 6,
-        task: 'Puttur-Uppinangady',
-        time: '10:00 AM',
-        image: 'https://cache.careers360.mobi/media/colleges/staticmap/2023/8/8/20415.png',
-      },
-      {
-        id: 7,
-        task: 'StateBank - Puttur',
-        time: '08:00 AM',
-        image: 'https://www.caronrentals.com/images/city/mangalore-to-puttur-round-trip_123653.jpg',
-      },
-      {
-        id: 8,
-        task: 'Puttur-Uppinangady',
-        time: '10:00 AM',
-        image: 'https://cache.careers360.mobi/media/colleges/staticmap/2023/8/8/20415.png',
-      },
-      {
-        id: 9,
-        task: 'StateBank - Puttur',
-        time: '08:00 AM',
-        image: 'https://www.caronrentals.com/images/city/mangalore-to-puttur-round-trip_123653.jpg',
-      },
-    // Other bus schedule items for today...
-  ];
+  const [todaySchedules, setTodaySchedules] = useState([]);
 
-  const tomorrowSchedule = [
-    {
-      id: 1,
-      task: 'StateBank - Puttur',
-      time: '08:00 AM',
-      image: 'https://www.caronrentals.com/images/city/mangalore-to-puttur-round-trip_123653.jpg',
-    },
-    {
-      id: 2,
-      task: 'Puttur-Uppinangady',
-      time: '10:00 AM',
-      image: 'https://cache.careers360.mobi/media/colleges/staticmap/2023/8/8/20415.png',
-    },
-    {
-      id: 3,
-      task: 'StateBank - Puttur',
-      time: '08:00 AM',
-      image: 'https://www.caronrentals.com/images/city/mangalore-to-puttur-round-trip_123653.jpg',
-    },
-    {
-      id: 4,
-      task: 'Puttur-Uppinangady',
-      time: '10:00 AM',
-      image: 'https://cache.careers360.mobi/media/colleges/staticmap/2023/8/8/20415.png',
-    },
-    {
-        id: 5,
-        task: 'StateBank - Puttur',
-        time: '08:00 AM',
-        image: 'https://www.caronrentals.com/images/city/mangalore-to-puttur-round-trip_123653.jpg',
-      },
-      {
-        id: 6,
-        task: 'Puttur-Uppinangady',
-        time: '10:00 AM',
-        image: 'https://cache.careers360.mobi/media/colleges/staticmap/2023/8/8/20415.png',
-      },
-      {
-        id: 7,
-        task: 'StateBank - Puttur',
-        time: '08:00 AM',
-        image: 'https://www.caronrentals.com/images/city/mangalore-to-puttur-round-trip_123653.jpg',
-      },
-      {
-        id: 8,
-        task: 'Puttur-Uppinangady',
-        time: '10:00 AM',
-        image: 'https://cache.careers360.mobi/media/colleges/staticmap/2023/8/8/20415.png',
-      },
-      {
-        id: 9,
-        task: 'StateBank - Puttur',
-        time: '08:00 AM',
-        image: 'https://www.caronrentals.com/images/city/mangalore-to-puttur-round-trip_123653.jpg',
-      },
-    // Other bus schedule items for tomorrow...
-  ];
- 
+  useEffect(() => {
+    const fetchTodaySchedules = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/api/today');
+        setTodaySchedules(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchTodaySchedules();
+  }, []);
   
   const cardTextStyle = {
     fontSize: '16px',
@@ -158,7 +57,7 @@ export default function TodayBus() {
               </h2>
 
               <div className="row">
-                {todaySchedule.map((item) => (
+                {todaySchedules.map((item) => (
                   <div
                     key={item.id}
                     className="col-md-4 mb-4" // Divide each row into 4 columns
@@ -187,13 +86,13 @@ export default function TodayBus() {
                   </div>
                 ))}
               </div>
-
+              <Uploadtoday/>
               <h2 className="schedule-header" style={headerStyle}>
                 Tomorrow's Schedule
               </h2>
 
               <div className="row">
-                {tomorrowSchedule.map((item) => (
+                {todaySchedules.map((item) => (
                   <div
                     key={item.id}
                     className="col-md-4 mb-4" // Divide each row into 4 columns
