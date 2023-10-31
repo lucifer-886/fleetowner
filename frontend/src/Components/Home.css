@@ -107,3 +107,13 @@
 .card-title {
   color: black; /* Change the text color as needed */
 }
+.image-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image-container {
+  text-align: center;
+  flex: 1;
+}
+

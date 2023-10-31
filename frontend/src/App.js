@@ -9,6 +9,8 @@ import Signin from './Components/auth/Signin'
 import Signup from './Components/auth/Signup'
 import Complaint from './Components/Complaint'
 import DriverList from './Components/DriverList'
+import Driver1 from './Components/Driver1'
+import Driver2 from './Components/Driver2'
 import TodaySchedule from './Components/Owner/TodaySchedule'
 import BusDrivers from './Components/Owner/BusDrivers'
 function App(){
@@ -26,8 +28,11 @@ function App(){
     <Route path="/signup" element={<Signup />}></Route>
     <Route path="/complaint" element={<Complaint />}></Route>
     <Route path="/driverlist" element={<DriverList />}></Route>
+    <Route path="/driver1" element={<Driver1 />}></Route>
+    <Route path="/driver2" element={<Driver2 />}></Route>
     <Route path="/toda" element={<TodaySchedule />}></Route>
     <Route path="/dr" element={<BusDrivers />}></Route>
+    
 
     
     

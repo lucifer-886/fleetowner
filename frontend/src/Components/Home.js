@@ -7,6 +7,7 @@ import './Driver.css';
 import Carousel from './Carousel'; // Import the Carousel component
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBus } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [driverData, setDriverData] = useState(null);
@@ -72,13 +73,14 @@ const Home = () => {
               <h2>Vehicle Details</h2>
               <div className="vehicle-details" style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <div>
-                  <p>No of Vehicles owned: {vehicleData.owned}</p>
+                  <p>Number of Vehicles owned: {vehicleData.owned}</p>
                   <p>Stops: {vehicleData.stops}</p>
                   <p>Distance: {vehicleData.distance}</p>
                   <p>Insurance Renewal Date: {vehicleData.insuranceRenewalDate}</p>
-                  <p>Previous Stop: {vehicleData.previousStop}</p>
-                  <p>Next Stop: {vehicleData.nextStop}</p>
                   <p>Live Location: {vehicleData.liveLocation}</p>
+                  
+                 {/*<p>Next Stop: {vehicleData.nextStop}</p>
+                  <p>Previous Stop: {vehicleData.previousStop}</p>*/}
                 </div>
                 <div className="vehicle-image">
                   <img src={vehicleData.imageUrl} alt="Vehicle" />
@@ -87,34 +89,93 @@ const Home = () => {
             </div>
 
             <div className="panel">
-              <h2>Driver Details</h2>
-              {driverData ? (
-                <div>
-                  <p>Name: {driverData.name}</p>
-                  <p>Email: {driverData.email}</p>
-                  <p>Age: {driverData.age}</p>
-                  <p>Experience: {driverData.experience}</p>
-                  <p>License Number: {driverData.licenseNumber}</p>
-                </div>
-              ) : (
-                <p>Loading driver information...</p>
-              )}
-            </div>
+           
+      <h2>Drivers Details</h2>
+      {driverData ? (
+        <div>
+          <p>Name: {driverData.name}</p>
+          <p>Email: {driverData.email}</p>
+          <p>Age: {driverData.age}</p>
+          <p>Experience: {driverData.experience}</p>
+          <p>License Number: {driverData.licenseNumber}</p>
+        </div>
+      ) : (
+        <div>
+          
+          <Link to="/Driver1">Driver 1</Link>
+          <br></br>
+          <Link to="/Driver2">Driver 2</Link> {/* Add links for Driver 2, 3, etc. */}
+          <br></br>
+          <Link to="/Driver3">Driver 3</Link>
+          <br></br>
+          <Link to="/Driver4">Driver 4</Link>
+          <br></br>
+          <Link to="/Driver5">Driver 5</Link>
+          <br></br>
+          <Link to="/Driver6">Driver 6</Link> {/* Add links for Driver 2, 3, etc. */}
+          <br></br>
+          <Link to="/Driver7">Driver 7</Link>
+          <br></br>
+          <Link to="/Driver8">Driver 8</Link>
+          <br></br>
+          <Link to="/Driver9">Driver 9</Link>
+        </div>
+      )}
+    </div>
 
-            <div className="panel" style={{ position: 'relative' }}>
-              <h2>Routes</h2>
-              <img
-                src="https://www.caronrentals.com/images/city/mangalore-to-puttur-round-trip_123653.jpg"
-                alt="Routes Map"
-                style={{ maxWidth: 'auto', height: '300px' }}
-              />
-            </div>
+    
+
+
+ <div className="panel">
+  <h2>Routes</h2>
+  <div className="image-row">
+    <div className="image-container">
+      <img
+        src="https://www.caronrentals.com/images/city/mangalore-to-puttur-round-trip_123653.jpg"
+        alt="Routes Map"
+        style={{ maxWidth: 'auto', height: '150px' }}
+      />
+      <figcaption>Driver 1</figcaption>
+    </div>
+    <div className="image-container">
+      <img
+        src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/201806/salem_to_chennai_1.png?v2J9zzUk.iY1.InZ.IwQ_jkAz9mCC5dw"
+        alt="Routes Map"
+        style={{ maxWidth: 'auto', height: '150px' }}
+      />
+      <figcaption>Driver 2</figcaption>
+    </div>
+  </div>
+  <div className="image-row">
+    <div className="image-container">
+      <img
+        src="https://amazingindiablog.in/wp-content/uploads/2018/04/Best-Road-Route-from-Bangalore-to-Mangalore-via-Chickmagaluru.png"
+        alt="Routes Map"
+        style={{ maxWidth: 'auto', height: '150px' }}
+      />
+      <figcaption>Driver 3</figcaption>
+    </div>
+    <div className="image-container">
+      <img
+        src="https://www.team-bhp.com/forum/attachments/route-travel-queries/1236892d1399183749-art-travelling-between-bangalore-mangalore-udupi-blr-ctga-smg-trtli-udi.jpg"
+        alt="Routes Map"
+        style={{ maxWidth: 'auto', height: '150px' }}
+      />
+      <figcaption>Driver 4</figcaption>
+        {/*<Link to="/Driverlist">Driver 4</Link>*/}
+
+    </div>
+  </div>
+</div>
+
+
+
 
             <div className="panel">
-              <h2>Engine Status</h2>
+              <h2>Monthly Performance</h2>
               <ul className="engine-status-list">
-                <li>Door: Closed</li>
-                <li>Vibration: Normal</li>
+                <li>Engine Status: Working</li>
+                <li>Average of passangers: 78%</li>
                 <li>Battery: 90%</li>
                 <li>Temperature: 25°C</li>
                 <li>Speed: 60 km/hr</li>
