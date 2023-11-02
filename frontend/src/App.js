@@ -33,11 +33,7 @@ function App(){
     <Route path="/driver2" element={<Driver2 />}></Route>
     <Route path="/toda" element={<TodaySchedule />}></Route>
     <Route path="/dr" element={<BusDrivers />}></Route>
-<<<<<<< HEAD
-    
-=======
     <Route path="/pr" element={<Profile />}></Route>
->>>>>>> a9d545deb39249eddf8076985db1aee1bff32f6b
 
     
     

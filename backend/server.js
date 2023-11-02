@@ -104,7 +104,16 @@ app.post('/api/today', async (req, res) => {
   }
 });
 
+app.get('/api/today', async (req, res) => {
+  try {
+    const todaySchedules = await Today.find(); // Fetch all today's schedules from the database
 
+    res.status(200).json(todaySchedules);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 const Driver = mongoose.model('Driver', DriverSchema);
 
 app.use(bodyParser.json());
