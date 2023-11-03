@@ -238,7 +238,9 @@ const BusDrivers = () => {
                   </div>
                 ))}
               </div><br></br><br></br><br></br><br></br><DriverUpload/>
-            </div>
+            </div> <footer className="footer">
+        &copy; 2023 Your Company. All rights reserved.
+      </footer>
           </div>
         </div>
       </div>

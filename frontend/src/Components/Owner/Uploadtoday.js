@@ -39,7 +39,7 @@ const UploadToday = () => {
 
   return (
     <div className="container-upload">
-      <h2>Add Today's Schedule</h2>
+      <h2>Add Today's &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Schedule</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="task" className="form-label">

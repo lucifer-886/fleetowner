@@ -116,8 +116,19 @@ export default function TodayBus() {
                     </div>
                   </div>
                 ))}
-              </div><div className='todaypage'><Uploadtoday /><br></br>
-              <UploadTomorrow/></div>
+              </div>
+              <div className='todaypage'>
+              <div className="row">
+      <div className="col-md-6">
+        <Uploadtoday />
+      </div>
+      <div className="col-md-6">
+        <UploadTomorrow />
+      </div>
+    </div> <footer className="footer">
+        &copy; 2023 Your Company. All rights reserved.
+      </footer>
+              </div>
             </div>
           </div>
         </div>
