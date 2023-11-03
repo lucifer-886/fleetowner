@@ -1,24 +1,31 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../Navbar';
 import './TodayBus.css';
 import axios from 'axios';
 import Uploadtoday from './Uploadtoday';
+import UploadTomorrow from './UploadTomorrow';
 export default function TodayBus() {
   const [todaySchedules, setTodaySchedules] = useState([]);
+  const [tomorrowSchedules, setTomorrowSchedules] = useState([]);
 
   useEffect(() => {
-    const fetchTodaySchedules = async () => {
+    const fetchSchedules = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/today');
-        setTodaySchedules(response.data);
+        // Fetch Today's Schedule
+        const todayResponse = await axios.get('http://localhost:3000/api/today');
+        setTodaySchedules(todayResponse.data);
+
+        // Fetch Tomorrow's Schedule
+        const tomorrowResponse = await axios.get('http://localhost:3000/api/tomorrow');
+        setTomorrowSchedules(tomorrowResponse.data);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchTodaySchedules();
+    fetchSchedules();
   }, []);
-  
+
   const cardTextStyle = {
     fontSize: '16px',
     fontWeight: 'bold',
@@ -32,17 +39,6 @@ export default function TodayBus() {
     width: '100%', // Adjusted width to take the full width of the column
   };
 
-  const highlightCardStyle = {
-    backgroundColor: 'rgba(255, 255, 255, 0.9)', // Lighter shade of white
-    transform: 'scale(1.05)',
-  };
-
-  const headerStyle = {
-    fontSize: '24px',
-    fontWeight: 'bold',
-    fontFamily: 'Times, serif',
-  };
-
   return (
     <>
       <div className="bus-schedule-bg">
@@ -52,7 +48,7 @@ export default function TodayBus() {
               <Navbar />
             </div>
             <div className="col-md-9">
-              <h2 className="schedule-header mt-5" style={headerStyle}>
+              <h2 className="todayschedule" >
                 Today's Schedule
               </h2>
 
@@ -60,7 +56,7 @@ export default function TodayBus() {
                 {todaySchedules.map((item) => (
                   <div
                     key={item.id}
-                    className="col-md-4 mb-4" // Divide each row into 4 columns
+                    className="col-md-4 mb-4"
                   >
                     <div
                       className="card h-100"
@@ -86,16 +82,16 @@ export default function TodayBus() {
                   </div>
                 ))}
               </div>
-              <Uploadtoday/>
-              <h2 className="schedule-header" style={headerStyle}>
+              <br></br>
+              <h2 className="todayschedule">
                 Tomorrow's Schedule
               </h2>
 
               <div className="row">
-                {todaySchedules.map((item) => (
+                {tomorrowSchedules.map((item) => (
                   <div
                     key={item.id}
-                    className="col-md-4 mb-4" // Divide each row into 4 columns
+                    className="col-md-4 mb-4"
                   >
                     <div
                       className="card h-100"
@@ -120,11 +116,13 @@ export default function TodayBus() {
                     </div>
                   </div>
                 ))}
-              </div>
+              </div><div className='todaypage'><Uploadtoday /><br></br>
+              <UploadTomorrow/></div>
             </div>
           </div>
         </div>
       </div>
+      
     </>
   );
 }

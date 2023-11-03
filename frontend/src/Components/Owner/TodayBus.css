@@ -1,11 +1,10 @@
 /* Add your CSS styles here */
 
-.schedule-header {
-    font-size: 24px;
+
+  .todayschedule{
+    margin-left: 530px;
     font-weight: bold;
-    margin-left: 500px;
   }
-  
   .card {
     background-color: white;
     transition: transform 0.2s;
@@ -40,4 +39,7 @@
   }
   .bus-schedule-bg{
     width:'200px';
+  }
+  .todaypage{
+    margin-left: 200px;
   }
